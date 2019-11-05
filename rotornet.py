@@ -51,10 +51,10 @@ class RotorNet:
 		for dst_tor in neighbor_tors:
 			demand = self.demand.local(src_tor.id, dst_tor.id)
 
-			if demand > 0:
-				remote_local = self.demand.local(src_tor.id, dst_tor.id)
-				remote_non_local = None
-				self.topology.link_capacity - ()
+			# if demand > 0:
+			# 	remote_local = self.demand.local(src_tor.id, dst_tor.id)
+			# 	remote_non_local = None
+			# 	self.topology.link_capacity - ()
 
 			if capacity > 0:
 				indirect = clip(demand, 0, capacity) # indirect traffic				
