@@ -7,13 +7,16 @@ class Rotor:
 		self.link_capacity = link_capacity 
 		self.links = None
 
+
 	def _check_rep(self):
 		if self.matching is None or self.links is None:
 			raise Exception("No matching!!")
 
+
 	def install_matching(self, new_matching):
 		self.matching = list(new_matching)
 		self.links = { (src.id, dst.id) : self.link_capacity for src, dst in self.matching }
+
 
 	def send_second_hop_traffic(self):
 		self._check_rep()
@@ -23,6 +26,7 @@ class Rotor:
 			sent = src_tor.send_second_hop(dst_tor, capacity)
 			self.links[(src_tor.id, dst_tor.id)] -= sent
 
+
 	def send_direct_traffic(self):
 		self._check_rep()
 		# send traffic directly from src to dst in this matching
@@ -30,6 +34,7 @@ class Rotor:
 			capacity = self.links[(src_tor.id, dst_tor.id)]
 			sent = src_tor.send_direct(dst_tor, capacity)
 			self.links[(src_tor.id, dst_tor.id)] -= sent
+
 
 	def send_indirectly(self):
 		self._check_rep()
