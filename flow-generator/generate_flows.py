@@ -58,9 +58,9 @@ def main(
 ):
 	# csv header
 	fields = [
+		'FLOW_ARRIVAL_IN_SLOTS',
 		'FLOW_ID',
 		'FLOW_SIZE_IN_PKTS',
-		'FLOW_ARRIVAL_IN_SLOTS',
 		'FLOW_SRC',
 		'FLOW_DST',
 	]
@@ -82,10 +82,10 @@ def main(
 		# src --> dst chosen randomly over tor pairs
 		src, dst = random.choice(tor_pairs)
 
-		flows.append((flow_id, size, arrival, src, dst))
+		flows.append((arrival, flow_id, size, src, dst))
 
 	# sort flows in increasing arrival order
-	flows.sort(key = lambda f: f[2])
+	flows.sort(key = lambda f: f[0])
 
 	# write flows out to csv in increasing arrival order
 	with open(results_file, 'w') as csv_file:
